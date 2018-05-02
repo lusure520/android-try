@@ -27,7 +27,7 @@ public class EggAction : MonoBehaviour {
 
         Vector3 temp = transform.position;
         temp.x = Random.Range(x1, x2);
-        Instantiate(egg, temp, Quaternion.identity);
+        Instantiate(egg, temp, Quaternion.identity);//initialize the egg position and spawn eggs
         StartCoroutine(SpawnEgg(Random.Range(1f, 2f))); 
     }
 }
