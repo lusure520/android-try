@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class GameResult : MonoBehaviour {
@@ -10,12 +8,14 @@ public class GameResult : MonoBehaviour {
     private Text level;
     private Text scores;
 
+    // Use this for initialization
     void Start() {
         player = GameObject.Find("Player").GetComponent<Text>();
         level = GameObject.Find("Level").GetComponent<Text>();
         scores = GameObject.Find("Scores").GetComponent<Text>();
     }
 
+    // display the result for player
     void Update()
     {
         player.text = "Player Name : " + PlayerPrefs.GetString("PlayerName");

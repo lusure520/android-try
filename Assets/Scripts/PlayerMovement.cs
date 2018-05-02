@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -15,7 +13,7 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         Vector2 vel = myBody.velocity;
-        vel.x = Input.GetAxis("Horizontal") * speed;
+        vel.x = Input.mousePosition.x * 0.05f;
         //vel.x = test * speed;
         myBody.velocity = vel;
 	}
