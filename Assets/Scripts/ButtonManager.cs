@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ButtonManager : MonoBehaviour
 {
     private InputField nameInput;
-
+// inital game level
     public void StartGame(string newGameLevel)
     {
         SceneManager.LoadScene(newGameLevel);
