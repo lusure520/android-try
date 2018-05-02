@@ -12,6 +12,7 @@ public class ButtonManager : MonoBehaviour
     {
         SceneManager.LoadScene(newGameLevel);
     }
+// inital help button
     public void HelpButton(string Helplevel)
     {
         SceneManager.LoadScene(Helplevel);
