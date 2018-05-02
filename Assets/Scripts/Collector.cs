@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -26,11 +24,11 @@ public class Collector : MonoBehaviour {
         levelText = GameObject.Find("LevelText").GetComponent<Text>();
         heartnotice = GameObject.Find("HeartNotice").GetComponent<Text>();
         heartnotice.text = "The heart points:" + "5/5";
-        checkHealthAmount();
+        CheckHealthAmount();
     }
 
     // Update heart
-    void checkHealthAmount()
+    void CheckHealthAmount()
     {
         for (int i = 0; i < maxHeartAmount; i++)
         {
@@ -43,7 +41,7 @@ public class Collector : MonoBehaviour {
                 hearts[i].enabled = true;
             }
         }
-
+        // once heart be zero, junp to game over 
         if (startHeart == 0)
         {
 
@@ -55,30 +53,33 @@ public class Collector : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D target)
     {
-        
-        score = Convert.ToInt32(scoreText.text);
-        
-        
         if (target.tag == "egg" && startHeart != 0)
         {
             //Destroy(target.gameObject);
             target.gameObject.SetActive(false);
-            if(score != 0)
-            {
-                score--;
-            }
-            level = (score / 20);
-            levelText.text = level.ToString();
-            lost++;
-            heartnotice.text = "The heart points:" + (5-lost)+"/5";
-            if ((lost / heartpoint) == 1)
-            {
-                startHeart--;
-                lost = 0;
-                heartnotice.text = "The heart points:" + "5/5";
-            } 
-            checkHealthAmount();
+            ScoresUpdate();
+            CheckHealthAmount();
             scoreText.text = score.ToString();
+        }
+    }
+
+    void ScoresUpdate()
+    {
+        score = Convert.ToInt32(scoreText.text);//get current scores
+        if (score != 0)
+        {
+            score--;
+        }
+        level = (score / 20);// reduce level per each 20 scores
+        levelText.text = level.ToString();
+        lost++;
+        //heart points update
+        heartnotice.text = "The heart points:" + (5 - lost) + "/5";
+        if ((lost / heartpoint) == 1)
+        {
+            startHeart--;
+            lost = 0;
+            heartnotice.text = "The heart points:" + "5/5";
         }
     }
 }

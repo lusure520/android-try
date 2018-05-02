@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -10,7 +8,7 @@ public class ButtonManager : MonoBehaviour
 
     public void StartGame(string newGameLevel)
     {
-        SceneManager.LoadScene(newGameLevel);
+        SceneManager.LoadScene(newGameLevel);// to jump to the scenes by the specific scenes name
     }
     public void HelpButton(string Helplevel)
     {
@@ -22,13 +20,13 @@ public class ButtonManager : MonoBehaviour
     }
     public void ExitGame()
     {
-        PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();// delete all data in playerprefs
         SceneManager.LoadScene("Menu");
     }
     public void SubmitName(string submitlevel)
     {
         nameInput = GameObject.Find("NameInput").GetComponent<InputField>();
-        PlayerPrefs.SetString("PlayerName", nameInput.text);
+        PlayerPrefs.SetString("PlayerName", nameInput.text);// to associate a data and a key value to transform date.
         SceneManager.LoadScene(submitlevel);
     }
 }

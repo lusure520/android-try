@@ -1,15 +1,14 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 
 public class TextManager : MonoBehaviour
 {
 
-   Text title;
+    Text title;
     string playername;
 
-    // Use this for initialization
+    // Use this for check the time to notice player
     void Update() {
         title =GetComponent<Text>();
         playername = PlayerPrefs.GetString("PlayerName");

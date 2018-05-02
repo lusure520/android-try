@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -21,20 +20,22 @@ public class PlayerScore : MonoBehaviour {
 
     }
 	
+    //check for basket catcher the egg and grow scores up.
     void OnTriggerEnter2D(Collider2D target)
     {
         score = Convert.ToInt32(scoreText.text);
         level = Convert.ToInt32(levelText.text);
         if (target.tag == "egg")
         {
-            target.gameObject.SetActive(false);
+            target.gameObject.SetActive(false);// once catcher the egg, it will stop move and disappear
             score++;
             scoreText.text = score.ToString();
-            level = (score / 20);
+            level = (score / 20);// to increase one level per 20 scores.
             levelText.text = level.ToString();
         }
     }
-	// Update is called once per frame
+
+	// this will be used in sprint 2 to achieve restarting game 
 	IEnumerator RestartGame()
     {
         yield return new WaitForSecondsRealtime(2f);
