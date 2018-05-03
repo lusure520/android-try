@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,29 +8,24 @@ public class PlayerScore : MonoBehaviour {
     private Text scoreText;
     private Text levelText;
 
-    private int score = 0;
-    private int level = 0;
+    private int score;
+
+    
     // Use this for initialization
-    void Awake () {
+    void Start () {
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
         levelText = GameObject.Find("LevelText").GetComponent<Text>();
-        scoreText.text = "0";
-        levelText.text = "0";
-
+        score = 0;
     }
 	
     //check for basket catcher the egg and grow scores up.
     void OnTriggerEnter2D(Collider2D target)
     {
-        score = Convert.ToInt32(scoreText.text);
-        level = Convert.ToInt32(levelText.text);
         if (target.tag == "egg")
         {
             target.gameObject.SetActive(false);// once catcher the egg, it will stop move and disappear
-            score++;
-            scoreText.text = score.ToString();
-            level = (score / 20);// to increase one level per 20 scores.
-            levelText.text = level.ToString();
+            IncreaseScores(1);
+            UpdateText();
         }
     }
 
@@ -40,5 +34,26 @@ public class PlayerScore : MonoBehaviour {
     {
         yield return new WaitForSecondsRealtime(2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void UpdateText()
+    {
+        scoreText.text = GetScores().ToString();
+        levelText.text = GetLevel().ToString();
+    }
+
+    public int GetScores()
+    {
+        return score;
+    }
+
+    public void IncreaseScores(int newScore)
+    {
+        score += newScore;
+    }
+
+    public int GetLevel()
+    {
+        return score / 20;
     }
 }

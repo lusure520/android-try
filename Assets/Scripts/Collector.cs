@@ -9,28 +9,35 @@ public class Collector : MonoBehaviour {
     private Text levelText;
     private Text heartnotice;
 
-    private int level = 0;
-    private int score = 0;
-    private int lost = 0;
-    private int heartpoint = 5;
-    private int maxHeartAmount = 5;
-    public int startHeart = 5;
+    private int lostedPoint, startHeart;
+    private int HEARTPOINTS = 5;
+    private int MAXHEARTAMOUNT = 5;
 
     public Image[] hearts;
+
+    // use for testing
+    public void Construct(int lost, int start)
+    {
+        lostedPoint = lost;
+        startHeart = start;
+    }
+
     // Use this for initialization
     void Start()
     {
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
         levelText = GameObject.Find("LevelText").GetComponent<Text>();
         heartnotice = GameObject.Find("HeartNotice").GetComponent<Text>();
-        heartnotice.text = "The heart points:" + "5/5";
+        UpdateHeartPoint(GetHeartPoint());
+        Construct(0, 5);
         CheckHealthAmount();
     }
 
     // Update heart
     void CheckHealthAmount()
     {
-        for (int i = 0; i < maxHeartAmount; i++)
+        // update hearts
+        for (int i = 0; i < MAXHEARTAMOUNT; i++)
         {
             if (startHeart <= i)
             {
@@ -44,7 +51,6 @@ public class Collector : MonoBehaviour {
         // once heart be zero, junp to game over 
         if (startHeart == 0)
         {
-
             PlayerPrefs.SetString("PlayerScores", scoreText.text);
             PlayerPrefs.SetString("PlayerLevel", levelText.text);
             SceneManager.LoadScene("GameOver");
@@ -57,29 +63,47 @@ public class Collector : MonoBehaviour {
         {
             //Destroy(target.gameObject);
             target.gameObject.SetActive(false);
-            ScoresUpdate();
+            HeartPointUpdate();
             CheckHealthAmount();
-            scoreText.text = score.ToString();
         }
     }
 
-    void ScoresUpdate()
+    //update heart points
+    void HeartPointUpdate()
     {
-        score = Convert.ToInt32(scoreText.text);//get current scores
-        if (score != 0)
-        {
-            score--;
-        }
-        level = (score / 20);// reduce level per each 20 scores
-        levelText.text = level.ToString();
-        lost++;
+        int losted = GetLostHeartPoint() + 1;// lost one heartpoint 
         //heart points update
-        heartnotice.text = "The heart points:" + (5 - lost) + "/5";
-        if ((lost / heartpoint) == 1)
+        SetLostHeartPoint(losted);
+        if (IsLostAllHeartPoint())
         {
             startHeart--;
-            lost = 0;
-            heartnotice.text = "The heart points:" + "5/5";
+            SetLostHeartPoint(0);
         }
+        UpdateHeartPoint(GetHeartPoint());
+    }
+
+    public void UpdateHeartPoint(int heartPoints)
+    {
+        heartnotice.text = "The heart points:" + heartPoints + "/5";
+    }
+
+    public int GetHeartPoint()
+    {
+        return HEARTPOINTS - lostedPoint;
+    }
+
+    public int GetLostHeartPoint()
+    {
+        return lostedPoint;
+    }
+
+    public void SetLostHeartPoint(int losted)
+    {
+        lostedPoint = losted;
+    }
+
+    public Boolean IsLostAllHeartPoint()
+    {
+        return (lostedPoint == HEARTPOINTS) ? true : false;
     }
 }
