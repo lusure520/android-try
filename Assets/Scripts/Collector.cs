@@ -5,58 +5,78 @@ using UnityEngine.UI;
 
 public class Collector : MonoBehaviour {
 
-    private Text scoreText;
-    private Text levelText;
-    private Text heartnotice;
+    private Text scoreText;//an instance of score text.
+    private Text levelText;//an instance of level text.
+    private Text heartnotice;//an instance of heartpoint text.
 
-    private int lostedPoint, startHeart;
-    private int HEARTPOINTS = 5;
-    private int MAXHEARTAMOUNT = 5;
+    private int lostPoint, startHeart;//a varible of lostPoint and statHeart.
+    private static int HEARTPOINTS = 5;//a static varible of points for each heart.
+    private static int MAXHEARTAMOUNT = 5;//a static varible of maximum heart amount.
 
-    public Image[] hearts;
+    public Image[] hearts;//an array of heart.
 
-    // use for testing
+    // Construct()
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Use this for testing.
+    // 
+    // lost   The number of lost point for each heart.
+    // start  The number of start heart.
     public void Construct(int lost, int start)
     {
-        lostedPoint = lost;
+        lostPoint = lost;
         startHeart = start;
     }
 
+    // Start()
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Use this for initialization
+    //
+    // When game is started, instance of score, level and heart point will be created.
+    // The heart point and amount of heart will be initialized by method: construct() and updateHeartPoint().
+    // The heart will be initialized by method: CheckHealthAmount().
     void Start()
     {
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
         levelText = GameObject.Find("LevelText").GetComponent<Text>();
         heartnotice = GameObject.Find("HeartNotice").GetComponent<Text>();
-        UpdateHeartPoint(GetHeartPoint());
         Construct(0, 5);
+        UpdateHeartPointText(GetHeartPoint());        
         CheckHealthAmount();
     }
 
-    // Update heart
+    // CheckHealthAmount()
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Use this for Update heart.
+    //
+    // The method is used to update the heart during playing game and jump to the game over when heart is zero.
     void CheckHealthAmount()
     {
-        // update hearts
+        // update and control hearts display.
         for (int i = 0; i < MAXHEARTAMOUNT; i++)
         {
             if (startHeart <= i)
             {
-                hearts[i].enabled = false;
+                hearts[i].enabled = false; 
             }
             else
             {
                 hearts[i].enabled = true;
             }
         }
-        // once heart be zero, junp to game over 
+        // once heart be zero, jump to game over. 
         if (startHeart == 0)
         {
-            PlayerPrefs.SetString("PlayerScores", scoreText.text);
-            PlayerPrefs.SetString("PlayerLevel", levelText.text);
-            SceneManager.LoadScene("GameOver");
+            PlayerPrefs.SetString("PlayerScores", scoreText.text);// Create a varible in PlayerPrefs to transfer the scores to result board.
+            PlayerPrefs.SetString("PlayerLevel", levelText.text);// Create a varible in PlayerPrefs to transfer the level to result board.
+            SceneManager.LoadScene("GameOver");// loading "GameOver" scene using secene manager.
         }
     }
 
+    // OnTriggerEnter2D()
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Use this for catch the missed eggs.
+    //
+    // target  An parameter of the Collider2D to set up with UI collector. 
     void OnTriggerEnter2D(Collider2D target)
     {
         if (target.tag == "egg" && startHeart != 0)
@@ -68,42 +88,65 @@ public class Collector : MonoBehaviour {
         }
     }
 
-    //update heart points
+    // HeartPointUpdate()
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Use this for updating heart points
     void HeartPointUpdate()
     {
-        int losted = GetLostHeartPoint() + 1;// lost one heartpoint 
+        int lost = GetLostHeartPoint() + 1;// lost one heartpoint 
         //heart points update
-        SetLostHeartPoint(losted);
+        SetLostHeartPoint(lost);
         if (IsLostAllHeartPoint())
         {
             startHeart--;
             SetLostHeartPoint(0);
         }
-        UpdateHeartPoint(GetHeartPoint());
+        UpdateHeartPointText(GetHeartPoint());
     }
 
-    public void UpdateHeartPoint(int heartPoints)
+    // IsLostAllHeartPoint()
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Use this for checking the point of each heart is lost.
+    //
+    // returns  True if lost all point of a heart, or false if it has point.
+    public Boolean IsLostAllHeartPoint()
+    {
+        return (lostPoint == HEARTPOINTS) ? true : false;
+    }
+
+    // UpdateHeartPointText()
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Use this for updating the text of heart point.
+    //
+    // heartpoints  the number of heart points.
+    public void UpdateHeartPointText(int heartPoints)
     {
         heartnotice.text = "The heart points:" + heartPoints + "/5";
     }
 
+    // GetHeartPoint()
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Use this for get heart piont.
     public int GetHeartPoint()
     {
-        return HEARTPOINTS - lostedPoint;
+        return HEARTPOINTS - lostPoint;
     }
 
+    // GetLostHeartPoint()
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Use this for get lost heart point.
     public int GetLostHeartPoint()
     {
-        return lostedPoint;
+        return lostPoint;
     }
 
-    public void SetLostHeartPoint(int losted)
+    // SetLostHeartPoint()
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Use this for set lost heart point.
+    public void SetLostHeartPoint(int lost)
     {
-        lostedPoint = losted;
+        lostPoint = lost;
     }
 
-    public Boolean IsLostAllHeartPoint()
-    {
-        return (lostedPoint == HEARTPOINTS) ? true : false;
-    }
+    
 }
