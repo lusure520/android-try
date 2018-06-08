@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{B9058E51-75EA-DC23-CF3F-A1A2EAB29A87}</ProjectGuid>
+    <ProjectGuid>{C760C0DF-327A-495A-91B0-9717850963B7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -73,10 +73,10 @@
     <Compile Include="Assets\Scripts\SampleTest.cs" />
     <Compile Include="Assets\Scripts\TextManager.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/江铭浩/Desktop/catcher6/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/江铭浩/Documents/GitHub/android-try/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/江铭浩/Desktop/catcher6/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/江铭浩/Documents/GitHub/android-try/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -274,19 +274,19 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Data.Sqlite">
-      <HintPath>C:/Users/江铭浩/Desktop/catcher6/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
+      <HintPath>C:/Users/江铭浩/Documents/GitHub/android-try/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration">
-      <HintPath>C:/Users/江铭浩/Desktop/catcher6/Assets/Plugins/System.Configuration.dll</HintPath>
+      <HintPath>C:/Users/江铭浩/Documents/GitHub/android-try/Assets/Plugins/System.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="System.Data">
-      <HintPath>C:/Users/江铭浩/Desktop/catcher6/Assets/Plugins/System.Data.dll</HintPath>
+      <HintPath>C:/Users/江铭浩/Documents/GitHub/android-try/Assets/Plugins/System.Data.dll</HintPath>
     </Reference>
     <Reference Include="System.EnterpriseServices">
-      <HintPath>C:/Users/江铭浩/Desktop/catcher6/Assets/Plugins/System.EnterpriseServices.dll</HintPath>
+      <HintPath>C:/Users/江铭浩/Documents/GitHub/android-try/Assets/Plugins/System.EnterpriseServices.dll</HintPath>
     </Reference>
     <Reference Include="System.Security">
-      <HintPath>C:/Users/江铭浩/Desktop/catcher6/Assets/Plugins/System.Security.dll</HintPath>
+      <HintPath>C:/Users/江铭浩/Documents/GitHub/android-try/Assets/Plugins/System.Security.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/江铭浩/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
@@ -324,9 +324,6 @@
     <Reference Include="Boo.Lang">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
