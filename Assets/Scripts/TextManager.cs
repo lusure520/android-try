@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 
 public class TextManager : MonoBehaviour
 {
 
-   Text title;
+    Text title;
     string playername;
 
-    // Use this for initialization
-    void Update() {
+    // Use this for check the time to notice player
+    void Start() {
         title =GetComponent<Text>();
         playername = PlayerPrefs.GetString("PlayerName");
         System.DateTime currentTime = System.DateTime.Now;
@@ -26,6 +25,17 @@ public class TextManager : MonoBehaviour
         {
             title.text = "Hi " + playername + ", Good afternoon.";
         }
+
+        if(PlayerPrefs.GetInt("dataLogin") == 1)
+        {
+            db_controller db_controller = new GameObject().AddComponent<db_controller>();
+            title.text +="\n"+db_controller.GetScore(PlayerPrefs.GetString("PlayerName"));
+        }
+        else
+        {
+            title.text += "\n" +"Unsigned Player";
+        }
+        
     }
     
 }

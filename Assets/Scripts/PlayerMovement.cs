@@ -1,24 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
+    private bool isMouseDown = false;
+    private Vector3 lastMousePosition = Vector3.zero;
 
-    private float speed = 10f;
+    void Update()
+    {
+        //check if mouse is pressed
+        if (Input.GetMouseButtonDown(0))
+        {
+            isMouseDown = true;
+        }
+        //check if mouse is up
+        if (Input.GetMouseButtonUp(0))
+        {
+            isMouseDown = false;
+            lastMousePosition = Vector3.zero;//to clear the moved distance when mouse up
+        }
+        if (isMouseDown)
+        {
+            if (lastMousePosition != Vector3.zero)
+            {
+                Vector3 offset = Camera.main.ScreenToWorldPoint(Input.mousePosition) - lastMousePosition;//get distance of mouse moving
+                Vector3 newposition = new Vector3(offset.x, 0.0f, 0.0f);
+                this.transform.position += newposition;// update new position for items
+            }
+            lastMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-    private Rigidbody2D myBody;
-	// Use this for initialization
-	void Awake () {
-        myBody = GetComponent<Rigidbody2D>();
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-        Vector2 vel = myBody.velocity;
-        vel.x = Input.GetAxis("Horizontal") * speed;
-        //vel.x = test * speed;
-        myBody.velocity = vel;
-	}
-
-    
+        }
+    }
 }
