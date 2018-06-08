@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - egg
+  - heart
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2805129547
+    locked: 0
+  - name: egg
+    uniqueID: 273358435
+    locked: 0
+  - name: button
+    uniqueID: 4026161499
+    locked: 0
+  - name: player
+    uniqueID: 3734549767
+    locked: 0
+  - name: canvas
+    uniqueID: 3670464671
+    locked: 0
+  - name: MenuBar
+    uniqueID: 4190663603
+    locked: 0
+  - name: heart
+    uniqueID: 3158308777
+    locked: 0
