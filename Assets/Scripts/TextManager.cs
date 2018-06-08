@@ -9,11 +9,7 @@ public class TextManager : MonoBehaviour
     string playername;
 
     // Use this for check the time to notice player
-<<<<<<< HEAD
     void Update() {
-=======
-    void Start() {
->>>>>>> Bin_Jiang
         title =GetComponent<Text>();
         playername = PlayerPrefs.GetString("PlayerName");
         System.DateTime currentTime = System.DateTime.Now;
@@ -29,17 +25,6 @@ public class TextManager : MonoBehaviour
         {
             title.text = "Hi " + playername + ", Good afternoon.";
         }
-
-        if(PlayerPrefs.GetInt("dataLogin") == 1)
-        {
-            db_controller db_controller = new GameObject().AddComponent<db_controller>();
-            title.text +="\n"+db_controller.GetScore(PlayerPrefs.GetString("PlayerName"));
-        }
-        else
-        {
-            title.text += "\n" +"Unsigned Player";
-        }
-        
     }
     
 }
