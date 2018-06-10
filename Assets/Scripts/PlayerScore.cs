@@ -28,11 +28,14 @@ public class PlayerScore : MonoBehaviour {
             UpdateText();
         }
     }
-
+    public void GameRstart()
+    {
+        StartCoroutine(RestartGame());
+    }
 	// this will be used in sprint 2 to achieve restarting game 
 	IEnumerator RestartGame()
     {
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(0.5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
